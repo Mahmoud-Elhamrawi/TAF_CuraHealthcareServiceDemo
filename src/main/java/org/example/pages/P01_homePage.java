@@ -10,7 +10,6 @@ public class P01_homePage extends pageBase{
         this.driver =driver;
     }
 
-
     private By makeApp = By.id("btn-make-appointment");
     public  void   makeAppBtn(){
         clickElement(driver.findElement(makeApp));

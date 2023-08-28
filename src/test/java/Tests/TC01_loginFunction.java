@@ -3,9 +3,14 @@ package Tests;
 import org.example.pages.P01_homePage;
 import org.example.pages.P02_LoginPage;
 import org.example.pages.P03_makeAppointmentPage;
+import org.example.pages.P04_historyPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class TC01_loginFunction extends  TestBase {
 
@@ -14,7 +19,11 @@ public class TC01_loginFunction extends  TestBase {
     P03_makeAppointmentPage makeAppointmentPage ;
     SoftAssert softAssert = new SoftAssert();
 
-    @Test
+
+    P04_historyPage historyPage ;
+
+
+    @Test(priority = 1)
     public void loginFunction() throws InterruptedException {
         homePage = new P01_homePage(driver);
         homePage.makeAppBtn();
@@ -28,10 +37,10 @@ public class TC01_loginFunction extends  TestBase {
         System.out.println(driver.getCurrentUrl());
         softAssert.assertTrue(driver.getCurrentUrl().contains("appointment"));
 
-        makeAppointmentPage =new P03_makeAppointmentPage(driver);
+        makeAppointmentPage = new P03_makeAppointmentPage(driver);
 
-        Select select = new Select(makeAppointmentPage.facility());
-        select.selectByValue("Tokyo CURA Healthcare Center");
+        Select select1 = new Select(makeAppointmentPage.facility());
+        select1.selectByValue("Tokyo CURA Healthcare Center");
 
         makeAppointmentPage.setHospotolCheck();
 
@@ -52,6 +61,57 @@ public class TC01_loginFunction extends  TestBase {
 
 
 
+        makeAppointmentPage.goTOHome();
+        Thread.sleep(2000);
+
+        homePage.makeAppBtn();
+        Thread.sleep(1000);
+
+        Select select = new Select(makeAppointmentPage.facility());
+        select.selectByValue("Seoul CURA Healthcare Center");
+
+        makeAppointmentPage.setHospotolCheck();
+
+        makeAppointmentPage.radioProgramMedicare();
+
+        makeAppointmentPage.groupAddonBtnPiker("8");
+
+        makeAppointmentPage.comment("second make Appointment");
+
+        makeAppointmentPage.makeAppointmentBtn();
+
+
+        System.out.println(driver.getCurrentUrl());
+        softAssert.assertTrue(driver.getCurrentUrl().contains("appointment.php#summary"));
+
+        System.out.println(makeAppointmentPage.dateAssert().getText());
+        softAssert.assertEquals("08/08/2023",makeAppointmentPage.dateAssert().getText());
+
+        makeAppointmentPage.goTOHome();
+
+        softAssert.assertAll();
+    }
+
+
+
+
+    @Test(priority = 2)
+    public void checkHistory() throws InterruptedException {
+        historyPage = new P04_historyPage(driver);
+        historyPage.menuToggleBtn();
+
+        Thread.sleep(1000);
+        historyPage.history();
+
+        System.out.println(driver.getCurrentUrl());
+        softAssert.assertTrue(driver.getCurrentUrl().contains("history"));
+
+        List<WebElement> x  = historyPage.countEle();
+        System.out.println(x.size());
+        softAssert.assertEquals(1,x.size());
+
+
+
 
 
 
@@ -63,7 +123,6 @@ public class TC01_loginFunction extends  TestBase {
 
         softAssert.assertAll();
     }
-
 
 
 

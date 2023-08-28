@@ -11,7 +11,7 @@ public class P03_makeAppointmentPage extends  pageBase{
         super(driver);
         this.driver=driver;
     }
-
+             P01_homePage homePage ;
          private By facilitTag =By.id("combo_facility");
             public WebElement facility()
             {
@@ -61,6 +61,10 @@ public class P03_makeAppointmentPage extends  pageBase{
                    return driver.findElement(visitDate);
                 }
 
+            private  By home = By.cssSelector("a[class=\"btn btn-default\"]");
+                public void goTOHome(){
+                    clickElement(driver.findElement(home));
+                }
 
 
 

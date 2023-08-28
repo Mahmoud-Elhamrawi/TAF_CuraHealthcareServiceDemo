@@ -4,8 +4,8 @@
     <test name="regressionTest" >
         <classes>
             <class name="Tests.TC01_loginFunction" />
-            <class name="Tests.TC2_makeAppointment" />
         </classes>
+
     </test>
 
 </suite>

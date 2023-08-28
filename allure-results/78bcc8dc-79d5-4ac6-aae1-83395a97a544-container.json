@@ -1,0 +1,1 @@
+{"uuid":"78bcc8dc-79d5-4ac6-aae1-83395a97a544","name":"Tests.TC01_loginFunction","children":["d684a63d-4a84-4321-b4a0-f5f9ffc67b44"],"befores":[{"name":"openBrpwser","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1693245658241,"stop":1693245670085}],"afters":[],"start":1693245658185,"stop":1693245693989}
