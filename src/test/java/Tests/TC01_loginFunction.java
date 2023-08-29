@@ -1,9 +1,6 @@
 package Tests;
 
-import org.example.pages.P01_homePage;
-import org.example.pages.P02_LoginPage;
-import org.example.pages.P03_makeAppointmentPage;
-import org.example.pages.P04_historyPage;
+import org.example.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -17,6 +14,7 @@ public class TC01_loginFunction extends  TestBase {
     P01_homePage homePage;
     P02_LoginPage loginPage;
     P03_makeAppointmentPage makeAppointmentPage ;
+    P05_checkProfilePage checkProfilePage ;
     SoftAssert softAssert = new SoftAssert();
 
 
@@ -110,19 +108,34 @@ public class TC01_loginFunction extends  TestBase {
         System.out.println(x.size());
         softAssert.assertEquals(1,x.size());
 
-
-
-
-
-
-
-
-
-
-
-
         softAssert.assertAll();
     }
+
+
+
+
+   @Test(priority = 3)
+    private  void  checkprofile() throws InterruptedException {
+
+      makeAppointmentPage.goTOHome();
+      historyPage.menuToggleBtn();
+
+      checkProfilePage = new P05_checkProfilePage(driver);
+
+      checkProfilePage.profile();
+      System.out.println(driver.getCurrentUrl());
+      softAssert.assertTrue(driver.getCurrentUrl().contains("profile"));
+
+      softAssert.assertEquals("Profile",checkProfilePage.assertText().getText());
+
+      Thread.sleep(1000);
+
+      checkProfilePage.logout();
+       System.out.println(driver.getCurrentUrl());
+     softAssert.assertTrue(driver.getCurrentUrl().contains("cura.herokuapp.com"));
+
+        softAssert.assertAll();
+  }
 
 
 
