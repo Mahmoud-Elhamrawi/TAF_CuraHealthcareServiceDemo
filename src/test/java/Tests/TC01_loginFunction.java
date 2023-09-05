@@ -55,7 +55,7 @@ public class TC01_loginFunction extends  TestBase {
         softAssert.assertTrue(driver.getCurrentUrl().contains("appointment.php#summary"));
 
         System.out.println(makeAppointmentPage.dateAssert().getText());
-        softAssert.assertEquals("18/08/2023",makeAppointmentPage.dateAssert().getText());
+        softAssert.assertEquals("18/09/2023",makeAppointmentPage.dateAssert().getText());
 
 
 
@@ -83,7 +83,7 @@ public class TC01_loginFunction extends  TestBase {
         softAssert.assertTrue(driver.getCurrentUrl().contains("appointment.php#summary"));
 
         System.out.println(makeAppointmentPage.dateAssert().getText());
-        softAssert.assertEquals("08/08/2023",makeAppointmentPage.dateAssert().getText());
+        softAssert.assertEquals("08/09/2023",makeAppointmentPage.dateAssert().getText());
 
         makeAppointmentPage.goTOHome();
 
