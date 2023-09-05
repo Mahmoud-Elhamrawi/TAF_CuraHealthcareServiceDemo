@@ -23,6 +23,9 @@ public class TC01_loginFunction extends  TestBase {
 
     @Test(priority = 1)
     public void loginFunction() throws InterruptedException {
+
+        driver.get("https://katalon-demo-cura.herokuapp.com/");
+
         homePage = new P01_homePage(driver);
         homePage.makeAppBtn();
 
